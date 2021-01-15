@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "shoppingList-frontend"
+    }
+  },
+  "defaultProject": "shoppingList-frontend",
+  "cli": {
+    "analytics": false
+  }
 }
