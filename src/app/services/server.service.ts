@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { OktaAuthService } from '@okta/okta-angular';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -21,9 +22,26 @@ export class ServerService {
       }
     });
 
-
+    return new Promise((resolve, reject) => {
+      result.subscribe(resolve, reject);
+    });
 
   }
 
+  getArticles(){
+    return this.request('GET', `${environment.serverUrl}/article`);
+  }
+
+  createArticle(article){
+    return this.request('POST', `${environment.serverUrl}/article`, article);
+  }
+
+  updateArticle(article){
+    return this.request('PUT', `${environment.serverUrl}/article/${article.id}`, article);
+  }
+
+  deleteArticle(article){
+    return this.request('POST', `${environment.serverUrl}/article/${article.id}`);
+  }
 
 }
