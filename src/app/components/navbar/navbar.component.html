@@ -13,6 +13,10 @@
                     <a class="nav-link" [routerLink]="['articles']">Articles list</a>
                 </li>
             </ul>
+            <span>
+              <button class="btn btn-primary" *ngIf="!isAuthenticated" (click)="login()"> Login </button>
+              <button class="btn btn-danger" *ngIf="isAuthenticated" (click)="logout()"> Logout </button>
+            </span>
 
         </div>
     </div>
