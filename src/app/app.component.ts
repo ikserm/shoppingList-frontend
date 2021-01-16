@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { OktaAuthService } from "@okta/okta-angular";
 
 @Component({
@@ -10,14 +11,14 @@ export class AppComponent {
   title = 'shoppingList-frontend';
   isAuthenticated: boolean;
 
-  constructor (public oktaAuth: OktaAuthService){
+  constructor(public oktaAuth: OktaAuthService) {
     this.oktaAuth.$authenticationState.subscribe(
-      (isAuthenticated: boolean) => this.isAuthenticated = isAuthenticated
+      (isAuthenticated: boolean)  => this.isAuthenticated = isAuthenticated
     );
   }
 
   ngOnInit() {
-    this.oktaAuth.isAuthenticated().then( (auth) => {this.isAuthenticated = auth} );
+    this.oktaAuth.isAuthenticated().then((auth) => {this.isAuthenticated = auth});
   }
 
   login() {
@@ -25,12 +26,7 @@ export class AppComponent {
   }
 
   logout() {
-    this.oktaAuth.logout('/')
+    this.oktaAuth.logout('/');
   }
-
-
-
-
-
 }
 
