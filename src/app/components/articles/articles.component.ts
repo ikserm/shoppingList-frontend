@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ServerService } from "../../services/server.service";
 import { FormGroup, FormBuilder, Validators, AbstractControl, ValidatorFn } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser'
+
+import { ArticleModel } from "../../Models/article.model";
+
 @Component({
   selector: 'app-articles',
   templateUrl: './articles.component.html',
@@ -12,8 +15,8 @@ export class ArticlesComponent implements OnInit {
 
   form: FormGroup;
 
-  articles: any[] = [];
-  currentArticle: any = {id: null, name: '', description:'', state:'', date:new Date()};
+  articles: ArticleModel[] = [];
+  currentArticle: ArticleModel = {id: null, name: '', description:'', state:'', date:new Date()};
 
   constructor(  private formBuildeer: FormBuilder,
                 private server: ServerService) { }
@@ -31,10 +34,35 @@ export class ArticlesComponent implements OnInit {
   private getArticles(){
     this.server.getArticles().then((response: any) => {
       console.log('Response', response);
-      this.articles = response.map((ar) => {
-        return ar;
-      });
+      this.articles = response;
     });
   }
+
+  private updateForm() {
+    this.form.setValue({
+      name: this.currentArticle.name,
+      description: this.currentArticle.description,
+      state: this.currentArticle.state,
+      date: new Date(this.currentArticle.date)
+    });
+  }
+
+  addArticle(template) {
+    this.currentArticle ={id: null, name: '', description: '', state: '', date: new Date()};
+    this.updateForm();
+  }
+
+  createArticle() {
+    const newArticle: ArticleModel = {
+      name: this.form.get('name').value,
+      description: this.form.get('description').value,
+      state: this.form.get('state').value,
+      date: this.form.get('date').value,
+    };
+    this.server.createArticle(newArticle).then( () => {
+      this.getArticles();
+    });
+  }
+
 
 }
