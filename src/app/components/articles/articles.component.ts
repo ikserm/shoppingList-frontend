@@ -47,7 +47,7 @@ export class ArticlesComponent implements OnInit {
     });
   }
 
-  addArticle(template) {
+  addArticle() {
     this.currentArticle ={id: null, name: '', description: '', state: '', date: new Date()};
     this.updateForm();
   }
@@ -63,6 +63,21 @@ export class ArticlesComponent implements OnInit {
       this.getArticles();
     });
   }
+
+  editArticle( index ) {
+    this.currentArticle = this.articles[index];
+    this.updateForm();
+  }
+
+  updateArticle() {
+    const articleData: ArticleModel = {
+      id: this.currentArticle.id,
+      name: this.currentArticle.name,
+      description: this.currentArticle.description,
+    }
+  }
+
+
 
 
 }
