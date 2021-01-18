@@ -74,9 +74,18 @@ export class ArticlesComponent implements OnInit {
       id: this.currentArticle.id,
       name: this.currentArticle.name,
       description: this.currentArticle.description,
-    }
+    };
+    this.server.updateArticle(articleData).then( () => {
+      this.getArticles();
+    });
   }
 
+  updateState(index, val) {
+    this.articles[index].state = val;
+    this.server.updateArticle(this.articles[index]).then( ()=> {
+      this.getArticles;
+    });
+  }
 
 
 
