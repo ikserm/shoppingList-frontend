@@ -87,6 +87,10 @@ export class ArticlesComponent implements OnInit {
     });
   }
 
-
+  deleteArticle( index) {
+    this.server.deleteArticle( this.articles[index] ).then(() => {
+      this.getArticles();
+    });
+  }
 
 }
