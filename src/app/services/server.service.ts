@@ -41,7 +41,7 @@ export class ServerService {
   }
 
   deleteArticle(article){
-    return this.request('POST', `${environment.serverUrl}/article/${article.id}`);
+    return this.request('DELETE', `${environment.serverUrl}/article/${article.id}`);
   }
 
 }
