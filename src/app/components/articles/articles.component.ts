@@ -41,9 +41,16 @@ export class ArticlesComponent implements OnInit {
     });
   }
 
-  setCurrentArticle(i) {
-    this.currentArticle = this.articles[i];
-    return this.currentArticle;
+  setCurrentArticle(index) {
+      this.currentArticle = this.articles[index];
+  }
+
+  clearCurrentArticle() {
+    this.currentArticle.id=null;
+    this.currentArticle.name="";
+    this.currentArticle.description="";
+    this.currentArticle.state="";
+    this.currentArticle.date=null;
   }
 
   save( form: NgForm){
