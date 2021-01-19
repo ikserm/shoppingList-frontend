@@ -18,7 +18,7 @@ export class ArticlesComponent implements OnInit {
   modalRef: BsModalRef;
 
   articles: ArticleModel[] = [];
-  currentArticle: ArticleModel = {id: null, name: '', description:'', state:'', date:new Date()};
+  currentArticle: ArticleModel = {id: null, name: '', description:'', state:'1', date:new Date()};
   modalCallback: () => void;
 
   constructor(  private formBuildeer: FormBuilder,
@@ -49,7 +49,7 @@ export class ArticlesComponent implements OnInit {
     this.currentArticle.id=null;
     this.currentArticle.name="";
     this.currentArticle.description="";
-    this.currentArticle.state="";
+    this.currentArticle.state="1";
     this.currentArticle.date=null;
   }
 
