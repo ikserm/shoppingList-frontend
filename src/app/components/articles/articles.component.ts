@@ -65,12 +65,15 @@ export class ArticlesComponent implements OnInit {
       this.server.createArticle( this.currentArticle ).then( ()=>{
         this.getArticles();
       });
+
     }else{
       console.log("update article")
       this.server.updateArticle( this.currentArticle ).then( ()=>{
         this.getArticles;
       });
+      this.getArticles();
     }
+
 
   }
 
