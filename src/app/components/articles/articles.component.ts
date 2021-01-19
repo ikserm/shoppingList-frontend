@@ -35,7 +35,7 @@ export class ArticlesComponent implements OnInit {
   }
 
   private getArticles(){
-    this.server.getArticles().then((response: any) => {
+    this.server.getArticles().then((response: ArticleModel[]) => {
       console.log('Response', response);
       this.articles = response;
     });
@@ -60,54 +60,18 @@ export class ArticlesComponent implements OnInit {
     };
 
     if ( this.currentArticle.id==null){
-      console.log("new article")
+      console.log("new article");
+      console.log(this.currentArticle)
+      this.server.createArticle( this.currentArticle ).then( ()=>{
+        this.getArticles();
+      });
     }else{
       console.log("update article")
+      this.server.updateArticle( this.currentArticle ).then( ()=>{
+        this.getArticles;
+      });
     }
 
-  }
-
-  updateForm(ar?) {
-    this.form.setValue({
-      name: this.currentArticle.name,
-      description: this.currentArticle.description,
-
-    });
-
-    console.log(this.currentArticle);
-  }
-
-  addArticle() {
-    this.currentArticle ={id: null, name: '', description: '', state: '', date: new Date()};
-    this.updateForm();
-  }
-
-  createArticle() {
-    const newArticle = {
-      name: this.form.get('name').value,
-      description: this.form.get('description').value,
-      state: this.form.get('state').value,
-      date: this.form.get('date').value,
-    };
-    this.server.createArticle(newArticle).then( () => {
-      this.getArticles();
-    });
-  }
-
-  editArticle( index ) {
-    this.currentArticle = this.articles[index];
-    this.updateForm();
-  }
-
-  updateArticle() {
-    const articleData  = {
-      id: this.currentArticle.id,
-      name: this.currentArticle.name,
-      description: this.currentArticle.description,
-    };
-    this.server.updateArticle(articleData).then( () => {
-      this.getArticles();
-    });
   }
 
   updateState(index, val) {
