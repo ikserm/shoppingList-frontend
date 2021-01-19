@@ -52,7 +52,11 @@ export class ArticlesComponent implements OnInit {
       return;
     };
 
-    if ( this.currentArticle.id==null){}
+    if ( this.currentArticle.id==null){
+      console.log("new article")
+    }else{
+      console.log("update article")
+    }
 
   }
 
