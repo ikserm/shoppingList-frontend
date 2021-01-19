@@ -42,7 +42,7 @@ export class ArticlesComponent implements OnInit {
   }
 
   setCurrentArticle(index) {
-      this.currentArticle = this.articles[index];
+      this.currentArticle = JSON.parse( JSON.stringify( this.articles[index] ) );
   }
 
   clearCurrentArticle() {
