@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { ServerService } from "../../services/server.service";
-import { FormGroup, FormBuilder, Validators, AbstractControl, ValidatorFn } from '@angular/forms';
-import { BrowserModule } from '@angular/platform-browser'
+import { FormGroup, FormBuilder, Validators, AbstractControl, ValidatorFn, NgForm } from '@angular/forms';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
 import { ArticleModel } from "../../Models/article.model";
+form: FormGroup;
 
 @Component({
   selector: 'app-articles',
@@ -14,9 +15,11 @@ import { ArticleModel } from "../../Models/article.model";
 export class ArticlesComponent implements OnInit {
 
   form: FormGroup;
+  modalRef: BsModalRef;
 
   articles: ArticleModel[] = [];
   currentArticle: ArticleModel = {id: null, name: '', description:'', state:'', date:new Date()};
+  modalCallback: () => void;
 
   constructor(  private formBuildeer: FormBuilder,
                 private server: ServerService) { }
@@ -38,13 +41,29 @@ export class ArticlesComponent implements OnInit {
     });
   }
 
-  private updateForm() {
+  setCurrentArticle(i) {
+    this.currentArticle = this.articles[i];
+    return this.currentArticle;
+  }
+
+  save( form: NgForm){
+    if ( form.valid == false){
+      console.log('Form no valid');
+      return;
+    };
+
+    if ( this.currentArticle.id==null){}
+
+  }
+
+  updateForm(ar?) {
     this.form.setValue({
       name: this.currentArticle.name,
       description: this.currentArticle.description,
-      state: this.currentArticle.state,
-      date: new Date(this.currentArticle.date)
+
     });
+
+    console.log(this.currentArticle);
   }
 
   addArticle() {
@@ -53,7 +72,7 @@ export class ArticlesComponent implements OnInit {
   }
 
   createArticle() {
-    const newArticle: ArticleModel = {
+    const newArticle = {
       name: this.form.get('name').value,
       description: this.form.get('description').value,
       state: this.form.get('state').value,
@@ -70,7 +89,7 @@ export class ArticlesComponent implements OnInit {
   }
 
   updateArticle() {
-    const articleData: ArticleModel = {
+    const articleData  = {
       id: this.currentArticle.id,
       name: this.currentArticle.name,
       description: this.currentArticle.description,
@@ -87,10 +106,21 @@ export class ArticlesComponent implements OnInit {
     });
   }
 
-  deleteArticle( index) {
-    this.server.deleteArticle( this.articles[index] ).then(() => {
+  deleteArticle( ) {
+
+    this.server.deleteArticle( this.currentArticle ).then(() => {
       this.getArticles();
     });
   }
+
+
+
+  onCancel() {
+    this.modalRef.hide();
+  }
+
+
+
+
 
 }

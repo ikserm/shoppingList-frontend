@@ -1,4 +1,4 @@
-<div *ngFor="let article of articles; let i = index" class="row row-cols-1 row-cols-md-2 animate__animated animate__faster	 animate__fadeIn">
+<div class="row row-cols-1 row-cols-md-2 animate__animated animate__faster	 animate__fadeIn">
 
     <div class="col mb-4" *ngFor="let article of articles; let i = index">
         <div class="card animate__animated animate__faster	 animate__zoomIn">
@@ -7,11 +7,12 @@
             </div>
             <div class="card-body">
                 <p class="card-text">{{article.description}}</p>
+                {{article.id}} num row:{{i}}
 
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal">
               <i class="fas fa-pen"></i>
             </button>
-                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">
+                <button type="button" (click)="setCurrentArticle(i)" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">
               <i class="fas fa-trash"></i>
             </button>
             </div>
@@ -30,14 +31,14 @@
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Edit article</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+                   <span aria-hidden="true">&times;</span>
+                </button>
             </div>
             <div class="modal-body">
                 <form [formGroup]="form">
                     <div class="form-group full-width-input">
                         <label>Article</label>
-                        <input class="form-control" placeholder="Article Name" formControlName="name" required>
+                        <input class="form-control" type="text" value="fsd" formControlName="name" required>
                     </div>
                     <div class="form-group full-width-input">
                         <label>Description</label>
@@ -65,12 +66,12 @@
             <div class="modal-header">
                 <h5 class="modal-title" id="deleteModalLabel">Are you sure you want to delete this item?</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+                   <span aria-hidden="true">&times;</span>
+                </button>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                <button type="button" class="btn btn-danger">Delete</button>
+                <button type="button" (click)="deleteArticle();" data-dismiss="modal" class="btn btn-danger">Delete</button>
             </div>
         </div>
     </div>
