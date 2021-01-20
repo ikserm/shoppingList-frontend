@@ -1,8 +1,8 @@
 <div class="row">
-    <div class="col text-left">
+    <div class="col text-left animate__animated animate__zoomIn animate__faster">
         <input type="text" class="form-control" placeholder="Search" [(ngModel)]="filterArticle">
     </div>
-    <div class="col text-right">
+    <div class="col text-right animate__animated animate__zoomIn nimate__faster">
         <button class="btn btn-primary" (click)="clearCurrentArticle()" data-toggle="modal" data-target="#formModal">
            <i class="fa fa-plus"></i>
             Agregar
@@ -29,20 +29,20 @@
 
 
 
-                <button *ngIf=" article.state==='0' " type="button" class="btn btn-secondary" (click)="updateState(i, '1') ">
+                <button *ngIf=" article.state==='0' " type="button" class="btn btn-secondary" (click)="updateState(article, '1') ">
                   <i class="fas fa-check "></i>
                 </button>
-                <button *ngIf=" article.state==='1' " type="button " class="btn btn-info" (click)="updateState(i, '0') ">
+                <button *ngIf=" article.state==='1' " type="button " class="btn btn-info" (click)="updateState(article, '0') ">
                   <i class="fa fa-clock "></i>
                 </button>
 
                 <div class="btn-group btn-group-toggle float-right" data-toggle="buttons">
 
 
-                    <button type="button " (click)="setCurrentArticle(i)" class="btn btn-primary" data-toggle="modal" data-target="#formModal">
+                    <button type="button " (click)="setCurrentArticle(article)" class="btn btn-primary" data-toggle="modal" data-target="#formModal">
                   <i class="fas fa-pen "></i>
                 </button>
-                    <button type="button " (click)="setCurrentArticle(i)" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">
+                    <button type="button " (click)="setCurrentArticle(article)" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">
                   <i class="fas fa-trash "></i>
                 </button>
                 </div>
