@@ -10,13 +10,16 @@ import { HomeComponent } from './components/home/home.component';
 import { ArticlesComponent } from './components/articles/articles.component';
 
 import { OktaAuthModule } from '@okta/okta-angular';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FilterPipe } from './pipes/filter.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     HomeComponent,
-    ArticlesComponent
+    ArticlesComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
@@ -28,7 +31,8 @@ import { OktaAuthModule } from '@okta/okta-angular';
       issuer: 'https://dev-3952669.okta.com/oauth2/default',
       redirectUri: 'http://localhost:4200/implicit/callback',
       clientId: '0oa3v6fhktTufr5Ia5d6',
-    })
+    }),
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
