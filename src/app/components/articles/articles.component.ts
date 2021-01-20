@@ -21,16 +21,9 @@ export class ArticlesComponent implements OnInit {
   currentArticle: ArticleModel = {id: null, name: '', description:'', state:'1', date:new Date()};
   modalCallback: () => void;
 
-  constructor(  private formBuildeer: FormBuilder,
-                private server: ServerService) { }
+  constructor( private server: ServerService) { }
 
   ngOnInit(): void {
-    this.form =this.formBuildeer.group({
-      name: [this.currentArticle.name, Validators.required],
-      description: this.currentArticle,
-      state: this.currentArticle,
-      date: [this.currentArticle, Validators.required]
-    });
     this.getArticles();
   }
 
@@ -73,8 +66,6 @@ export class ArticlesComponent implements OnInit {
       });
       this.getArticles();
     }
-
-
   }
 
   updateState(index, val) {
@@ -90,15 +81,6 @@ export class ArticlesComponent implements OnInit {
       this.getArticles();
     });
   }
-
-
-
-  onCancel() {
-    this.modalRef.hide();
-  }
-
-
-
 
 
 }
