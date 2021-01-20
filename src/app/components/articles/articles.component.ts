@@ -17,7 +17,7 @@ export class ArticlesComponent implements OnInit {
   form: FormGroup;
   modalRef: BsModalRef;
 
-  filterArticle: string;
+  filterArticle: string = "";
 
   articles: ArticleModel[] = [];
   currentArticle: ArticleModel = {id: null, name: '', description:'', state:'1', date:new Date(), quantity: 1 };
