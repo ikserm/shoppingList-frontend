@@ -60,19 +60,20 @@
                 <form #form=ngForm>
                     <div class="form-group full-width-input ">
                         <label>Article</label>
-                        <input class="form-control " type="text " [(ngModel)]="currentArticle.name " name="name " placeholder="Article name " required>
+                        <input class="form-control" [class.is-invalid]="name.invalid && name.touched" type="text " [(ngModel)]="currentArticle.name" name="name" placeholder="Article name" required minlength="1" #name="ngModel">
                     </div>
                     <div class="form-group full-width-input ">
                         <label>Description</label>
-                        <input class="form-control " type="text " [(ngModel)]="currentArticle.description " name="description " placeholder="Description ">
+                        <input class="form-control " type="text " [(ngModel)]="currentArticle.description" name="description " placeholder="Description ">
                     </div>
-                    <div class="form-group full-width-input ">
-                        <label>Estate</label>
+                    <div class="form-group full-width-input">
+                        <label>Date</label>
+                        <input class="form-control" [(ngModel)]="currentArticle.date" name="date">
                     </div>
 
                     <div class="modal-footer ">
                         <button type="button " class="btn btn-secondary " data-dismiss="modal">Cancel</button>
-                        <button type="submit " class="btn btn-primary " (click)="save( form ) " data-dismiss="modal">Save changes</button>
+                        <button type="submit " class="btn btn-primary" [disabled]="!currentArticle.name" (click)="save( form )" data-dismiss="modal" tabindex="-1">Save changes</button>
                     </div>
 
                 </form>

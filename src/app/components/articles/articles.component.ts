@@ -19,7 +19,6 @@ export class ArticlesComponent implements OnInit {
 
   articles: ArticleModel[] = [];
   currentArticle: ArticleModel = {id: null, name: '', description:'', state:'1', date:new Date()};
-  modalCallback: () => void;
 
   constructor( private server: ServerService) { }
 
