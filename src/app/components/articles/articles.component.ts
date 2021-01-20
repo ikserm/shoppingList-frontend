@@ -18,7 +18,7 @@ export class ArticlesComponent implements OnInit {
   modalRef: BsModalRef;
 
   articles: ArticleModel[] = [];
-  currentArticle: ArticleModel = {id: null, name: '', description:'', state:'1', date:new Date()};
+  currentArticle: ArticleModel = {id: null, name: '', description:'', state:'1', date:new Date(), quantity: 1 };
 
   constructor( private server: ServerService) { }
 
@@ -43,6 +43,7 @@ export class ArticlesComponent implements OnInit {
     this.currentArticle.description="";
     this.currentArticle.state="1";
     this.currentArticle.date=null;
+    this.currentArticle.quantity=1;
   }
 
   save( form: NgForm){
