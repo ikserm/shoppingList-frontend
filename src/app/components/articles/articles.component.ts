@@ -1,7 +1,7 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { ServerService } from "../../services/server.service";
 import { FormGroup, FormBuilder, Validators, AbstractControl, ValidatorFn, NgForm } from '@angular/forms';
-import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+
 
 import { ArticleModel } from "../../Models/article.model";
 form: FormGroup;
@@ -15,7 +15,6 @@ form: FormGroup;
 export class ArticlesComponent implements OnInit {
 
   form: FormGroup;
-  modalRef: BsModalRef;
 
   filterArticle: string = "";
 

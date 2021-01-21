@@ -1,14 +1,13 @@
 <div class="row">
-    <div class="input-group col col-10 col-lg-6 text-left">
+    <div class="input-group col col-9 col-lg-6 text-left">
         <input type="text" class="form-control" id="search" placeholder="Search" [(ngModel)]="filterArticle">
         <button class="btn bg-transparent" (click)="filterArticle='' " style="margin-left: -40px; z-index: 100;">
     <i class="fa fa-times"></i>
   </button>
     </div>
 
-    <div class="col  col-2 col-lg-6 text-right animate__animated animate__zoomIn nimate__faster">
+    <div class="col  col-3 col-lg-6 text-right animate__animated animate__zoomIn nimate__faster">
         <button class="btn btn-primary" (click)="clearCurrentArticle()" data-toggle="modal" data-target="#formModal">
-           <i class="fa fa-plus"></i>
             Add
         </button>
     </div>
